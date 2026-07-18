@@ -15,7 +15,17 @@ export const siteConfig = {
     label: "Download Resume",
     href: "#contact",
   },
+  contactCta: {
+    label: "Let's Connect",
+    href: "#contact",
+  },
   githubUrl: "https://github.com/Daniel23sh",
+  linkedinUrl: "https://www.linkedin.com/in/daniel-shatzov/",
+  resumeUrl: "/documents/daniel-shatzov-resume.pdf",
+  heroImage: {
+    src: "/images/portrait/daniel-hero.png",
+    alt: "Portrait of Daniel Shatzov",
+  },
 } as const;
 
 export const navigationItems = [
