@@ -36,6 +36,23 @@ export const navigationItems = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
+export const projectsSectionContent = {
+  heading: "Selected Work",
+  intro:
+    "A selection of products I've built across web, mobile, data, automation, and external integrations.",
+  placeholderLabel: "Screenshot coming soon",
+  actionLabel: "View Project",
+  labels: {
+    role: "Role",
+    duration: "Duration",
+    status: "Status",
+    visibility: "Visibility",
+    technologies: "Technologies",
+    architectureTrace: "Architecture Trace",
+    builtAround: "Built Around",
+  },
+} as const;
+
 export const projects = [
   {
     id: "queryops",
