@@ -163,13 +163,17 @@ export function Header() {
         id={mobileMenuId}
         aria-hidden={!isMenuOpen}
         inert={!isMenuOpen}
-        className={`relative z-10 grid overflow-hidden border-t bg-canvas transition-[grid-template-rows,opacity,transform,border-color] duration-300 ease-out motion-reduce:transition-none xl:hidden ${
-          isMenuOpen
-            ? "grid-rows-[1fr] translate-y-0 border-border opacity-100"
-            : "pointer-events-none grid-rows-[0fr] -translate-y-2 border-transparent opacity-0"
+        className={`absolute inset-x-0 top-full z-10 overflow-hidden xl:hidden ${
+          isMenuOpen ? "" : "pointer-events-none"
         }`}
       >
-        <div className="min-h-0 overflow-hidden">
+        <div
+          className={`border-b border-border bg-canvas transition-transform will-change-transform motion-reduce:transition-none ${
+            isMenuOpen
+              ? "transform-[translate3d(0,0,0)] duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              : "transform-[translate3d(0,-100%,0)] duration-[260ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+          }`}
+        >
           <nav
             aria-label="Mobile navigation"
             className="mx-auto max-h-[calc(100dvh-4.5rem)] w-full max-w-content overflow-y-auto px-page-gutter py-5"
