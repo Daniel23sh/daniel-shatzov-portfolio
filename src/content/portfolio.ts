@@ -1,4 +1,5 @@
 import type {
+  EducationSectionContent,
   ExperienceItem,
   ProcessStep,
   Project,
@@ -37,7 +38,7 @@ export const navigationItems = [
   { label: "Projects", href: "#projects" },
   { label: "The Way I Build", href: "#way-i-build" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -173,6 +174,24 @@ export const experiences = [
     tags: ["Team Leadership", "Networking", "500+ Users", "Tier 1 – 2"],
   },
 ] as const satisfies readonly ExperienceItem[];
+
+export const educationSectionContent = {
+  eyebrow: "ACADEMIC FOUNDATION",
+  degree: "B.Sc. in Computer Science",
+  institution: "Holon Institute of Technology · HIT",
+  startDate: "OCT 2023",
+  endDate: "AUG 2026",
+  startYear: "2023",
+  endYear: "2026",
+  expectedGraduation: "Expected August 2026",
+  focusLabel: "FOCUS",
+  focusItems: [
+    "Data Structures & Algorithms",
+    "Object-Oriented Programming",
+    "Database Systems",
+    "Computability & Complexity",
+  ],
+} as const satisfies EducationSectionContent;
 
 export const projects = [
   {

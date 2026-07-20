@@ -40,13 +40,16 @@ export function Header() {
 
   useEffect(() => {
     const desktopNavigation = window.matchMedia("(min-width: 80rem)");
-    const sections = headerNavigationItems.flatMap((item) => {
-      const section = document.querySelector<HTMLElement>(item.href);
-
-      return section ? [{ href: item.href, section }] : [];
-    });
     let animationFrame: number | null = null;
     let lastSelectedHref: NavigationHref | null = null;
+
+    function getSections() {
+      return headerNavigationItems.flatMap((item) => {
+        const section = document.querySelector<HTMLElement>(item.href);
+
+        return section ? [{ href: item.href, section }] : [];
+      });
+    }
 
     function selectHref(href: NavigationHref | null) {
       if (lastSelectedHref === href) {
@@ -65,6 +68,7 @@ export function Header() {
         return;
       }
 
+      const sections = getSections();
       const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
       const activationY = Math.min(
         window.innerHeight - 1,
@@ -75,7 +79,19 @@ export function Header() {
 
         return bounds.top <= activationY && bounds.bottom > activationY;
       });
-      const activeHref = activeSection?.href ?? null;
+      const lastSection = sections[sections.length - 1];
+      const lastSectionBounds = lastSection?.section.getBoundingClientRect();
+      const isAtPageEnd =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 1;
+      const isLastSectionVisible =
+        lastSectionBounds !== undefined &&
+        lastSectionBounds.top < window.innerHeight &&
+        lastSectionBounds.bottom > headerBottom;
+      const activeHref =
+        isAtPageEnd && isLastSectionVisible
+          ? (lastSection?.href ?? null)
+          : (activeSection?.href ?? null);
 
       selectHref(activeHref);
     }
@@ -93,7 +109,7 @@ export function Header() {
     if (headerRef.current) {
       resizeObserver.observe(headerRef.current);
     }
-    sections.forEach(({ section }) => resizeObserver.observe(section));
+    getSections().forEach(({ section }) => resizeObserver.observe(section));
 
     scheduleUpdate();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });

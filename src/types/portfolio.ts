@@ -74,3 +74,16 @@ export type ExperienceItem = {
   readonly description: readonly string[];
   readonly tags: readonly string[];
 };
+
+export type EducationSectionContent = {
+  readonly eyebrow: string;
+  readonly degree: string;
+  readonly institution: string;
+  readonly startDate: string;
+  readonly endDate: string;
+  readonly startYear: `${number}`;
+  readonly endYear: `${number}`;
+  readonly expectedGraduation: string;
+  readonly focusLabel: string;
+  readonly focusItems: readonly string[];
+};

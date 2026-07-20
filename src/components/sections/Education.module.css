@@ -1,0 +1,254 @@
+.inner {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-block: clamp(3.5rem, 12vw, 4.5rem);
+}
+
+.layout {
+  display: grid;
+  gap: 2.75rem;
+}
+
+.degreeBlock,
+.timelineBlock,
+.focusBlock {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  color: var(--color-accent-warm-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.25rem;
+}
+
+.eyebrowRule {
+  width: 1.75rem;
+  height: 1px;
+  flex: none;
+  background: var(--color-accent-warm);
+}
+
+.degreeDetails {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.bookIcon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-accent-warm-text);
+}
+
+.degree {
+  color: var(--color-ink);
+  font-family: var(--font-eb-garamond);
+  font-size: clamp(2rem, 9vw, 2.625rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.institution {
+  margin-top: 0.625rem;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+}
+
+.timelineBlock {
+  --date-path-width: min(calc(100% - 2rem), 18rem);
+
+  display: grid;
+  width: 100%;
+  align-self: center;
+  justify-items: center;
+}
+
+.datePath {
+  display: grid;
+  grid-template-columns: auto minmax(5.5rem, 1fr) auto;
+  width: var(--date-path-width);
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.year {
+  color: var(--color-ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25rem;
+}
+
+.path {
+  position: relative;
+  height: 1px;
+  background: color-mix(
+    in srgb,
+    var(--color-accent-warm) 70%,
+    var(--color-border)
+  );
+}
+
+.path::before,
+.path::after {
+  position: absolute;
+  top: 50%;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 1px solid var(--color-accent-warm);
+  border-radius: 50%;
+  content: "";
+  background: var(--color-canvas);
+  transform: translateY(-50%);
+}
+
+.path::before {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.path::after {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.expected {
+  width: var(--date-path-width);
+  margin-top: 0.875rem;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-style: italic;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.focusLabel {
+  color: var(--color-accent-warm-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.25rem;
+}
+
+.focusList {
+  display: grid;
+  gap: 0.875rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.focusList li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+}
+
+.focusList li::before {
+  position: absolute;
+  top: 0.75rem;
+  left: 0;
+  width: 0.5rem;
+  height: 1px;
+  content: "";
+  background: var(--color-accent-warm);
+}
+
+@media (min-width: 36rem) {
+  .focusList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .inner {
+    padding-block: clamp(4rem, 7vw, 5rem);
+  }
+
+  .layout {
+    grid-template-columns: minmax(13rem, 0.8fr) minmax(20rem, 1.2fr);
+    gap: 3rem clamp(3rem, 7vw, 5rem);
+  }
+
+  .degreeBlock {
+    grid-column: 1 / -1;
+  }
+
+  .timelineBlock,
+  .focusBlock {
+    grid-column: 1 / -1;
+  }
+
+  .degreeDetails {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .bookIcon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .degree {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+  }
+
+  .focusList {
+    column-gap: 2.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .inner {
+    padding-block: clamp(3.5rem, 6vw, 5.5rem);
+  }
+
+  .layout {
+    grid-template-columns:
+      minmax(18rem, 1.35fr)
+      minmax(13rem, 0.85fr)
+      minmax(20rem, 1.1fr);
+    gap: clamp(2rem, 3.5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .degreeBlock {
+    grid-column: auto;
+  }
+
+  .timelineBlock,
+  .focusBlock {
+    grid-column: auto;
+  }
+
+  .degreeDetails {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .bookIcon {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .degree {
+    font-size: clamp(2rem, 2.7vw, 2.75rem);
+  }
+
+  .focusList {
+    column-gap: clamp(1.5rem, 2.5vw, 3rem);
+  }
+}
