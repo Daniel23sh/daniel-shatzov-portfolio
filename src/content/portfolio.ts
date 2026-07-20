@@ -42,6 +42,11 @@ export const projectsSectionContent = {
     "A selection of products I've built across web, mobile, data, automation, and external integrations.",
   placeholderLabel: "Screenshot coming soon",
   actionLabel: "View Project",
+  modal: {
+    closeLabel: "Close",
+    overviewLabel: "Overview",
+    linksLabel: "Project Links",
+  },
   labels: {
     role: "Role",
     duration: "Duration",
