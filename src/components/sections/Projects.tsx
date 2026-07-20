@@ -8,7 +8,7 @@ export function Projects() {
     <section
       id="projects"
       aria-labelledby={projectsHeadingId}
-      className="scroll-mt-24 border-y border-border bg-surface-blue/30 px-page-gutter py-section"
+      className="scroll-mt-24 border-y border-border bg-transparent px-page-gutter py-section"
     >
       <div className="mx-auto w-full max-w-content">
         <header className="max-w-3xl">
