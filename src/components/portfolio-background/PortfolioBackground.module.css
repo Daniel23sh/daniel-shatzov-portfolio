@@ -1,0 +1,261 @@
+.artwork {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 48% 42%, rgb(255 255 255 / 46%), transparent 42%),
+    #f4efe8;
+}
+
+.artwork::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  opacity: 0.22;
+  background-image: radial-gradient(rgb(7 26 51 / 14%) 0.45px, transparent 0.55px);
+  background-size: 7px 7px;
+  mix-blend-mode: multiply;
+}
+
+.gitMap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: #687788;
+  opacity: 0.2;
+}
+
+.gitLines { stroke-linecap: round; }
+.commitNodes { stroke-linecap: round; }
+
+.currentCommit {
+  fill: #cd8758;
+  opacity: 0.62;
+}
+
+.randomNotes {
+  position: absolute;
+  inset: 0;
+}
+
+.note {
+  position: absolute;
+  color: #718095;
+  filter: drop-shadow(0 10px 14px rgb(51 45 35 / 10%));
+  animation: noteReveal 200ms ease-out both;
+}
+
+.note::before {
+  position: absolute;
+  z-index: 1;
+  content: '';
+  background: linear-gradient(
+    100deg,
+    rgb(215 198 161 / 46%),
+    rgb(215 198 161 / 64%) 44%,
+    rgb(215 198 161 / 50%)
+  );
+}
+
+.note svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 9%;
+  background-color: rgb(255 252 244 / 55%);
+  background-image:
+    linear-gradient(rgb(104 119 136 / 10%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(104 119 136 / 10%) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.noteTopLeft {
+  top: 6.5%;
+  left: 1%;
+  width: clamp(11rem, 19vw, 18rem);
+  transform: rotate(-3.5deg);
+}
+
+.noteTopLeft svg {
+  clip-path: polygon(1% 4%, 8% 2%, 17% 3%, 25% 1%, 36% 3%, 48% 1%, 59% 3%, 70% 1%, 82% 3%, 93% 1%, 99% 6%, 98% 93%, 92% 96%, 83% 94%, 75% 98%, 64% 95%, 54% 98%, 44% 95%, 34% 98%, 23% 95%, 13% 98%, 2% 94%);
+}
+
+.noteTopRight {
+  top: 10%;
+  right: 2.5%;
+  width: clamp(11rem, 18vw, 17rem); /* 9.5rem, 15vw, 14rem */
+  transform: rotate(3deg);
+}
+
+.noteTopRight::before {
+  left: 47%;
+}
+
+.noteTopRight svg {
+  clip-path: polygon(2% 5%, 12% 2%, 23% 4%, 34% 1%, 47% 3%, 60% 1%, 72% 4%, 84% 2%, 98% 5%, 99% 91%, 91% 95%, 80% 93%, 69% 97%, 57% 94%, 45% 97%, 34% 94%, 22% 97%, 10% 94%, 1% 91%);
+}
+
+.noteBottomLeft {
+  bottom: 1.5%;
+  left: -0.5%;
+  width: clamp(12rem, 20vw, 19rem);
+  transform: rotate(-3deg);
+}
+
+.noteBottomLeft::before {
+  left: 36%;
+}
+
+.noteBottomLeft svg {
+  clip-path: polygon(1% 5%, 10% 2%, 20% 4%, 30% 1%, 42% 3%, 53% 1%, 65% 4%, 77% 2%, 88% 4%, 99% 2%, 98% 93%, 89% 96%, 79% 94%, 69% 98%, 58% 95%, 47% 98%, 37% 95%, 26% 98%, 14% 95%, 2% 97%);
+}
+
+.noteBottomRight {
+  right: 1.5%;
+  bottom: 1%;
+  width: clamp(10rem, 17vw, 16rem);
+  transform: rotate(3.5deg);
+}
+
+.noteBottomRight::before {
+  left: 44%;
+}
+
+.noteBottomRight svg {
+  clip-path: polygon(2% 3%, 13% 1%, 24% 4%, 35% 2%, 47% 4%, 59% 1%, 72% 3%, 84% 1%, 98% 5%, 99% 92%, 91% 96%, 80% 94%, 70% 98%, 59% 95%, 48% 98%, 37% 94%, 25% 97%, 13% 94%, 1% 96%);
+}
+
+.sketch {
+  opacity: 0.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.handwriting {
+  font-family: 'Comic Sans MS', 'Bradley Hand', cursive;
+  font-size: 16px;
+  opacity: 0.60;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.noteTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.largeHandwriting {
+  font-size: 19px;
+}
+
+.smallHandwriting {
+  font-size: 12px;
+}
+
+.inkAmber {
+  color: #b68132;
+  fill: #b68132;
+  stroke: #b68132;
+}
+
+.inkGreen {
+  color: #5d7f5b;
+  fill: #5d7f5b;
+  stroke: #5d7f5b;
+}
+
+.commentInk {
+  color: #c86b43;
+  fill: #c86b43;
+  stroke: #c86b43;
+}
+
+.inkMuted {
+  color: #8995a5;
+  fill: #8995a5;
+  stroke: #8995a5;
+}
+
+.inkRejected {
+  color: #b2b5b5;
+  fill: #b2b5b5;
+  stroke: #b2b5b5;
+}
+
+.strokeAmber {
+  stroke: #b68132;
+}
+
+.strokeGreen {
+  stroke: #5d7f5b;
+}
+
+.tapeOne::before {
+  top: -4.5%;
+  left: 34%;
+  width: 32%;
+  height: 12%;
+  clip-path: polygon(2% 18%, 7% 8%, 23% 11%, 37% 4%, 54% 10%, 69% 5%, 84% 12%, 96% 7%, 99% 27%, 95% 43%, 100% 63%, 95% 83%, 78% 79%, 62% 91%, 45% 82%, 29% 89%, 12% 80%, 1% 84%, 4% 61%, 0 41%);
+  transform: rotate(-3deg);
+}
+
+.tapeTwo::before {
+  top: -3.5%;
+  left: 48%;
+  width: 30%;
+  height: 11.5%;
+  clip-path: polygon(1% 23%, 6% 7%, 21% 13%, 35% 5%, 51% 12%, 65% 4%, 82% 11%, 97% 5%, 94% 24%, 100% 42%, 96% 61%, 99% 82%, 83% 76%, 67% 89%, 50% 80%, 34% 91%, 18% 79%, 3% 86%, 6% 65%, 0 44%);
+  transform: rotate(3deg);
+}
+
+.tapeThree::before {
+  top: -4%;
+  left: 37%;
+  width: 34%;
+  height: 12%;
+  clip-path: polygon(2% 12%, 15% 8%, 29% 14%, 43% 4%, 58% 12%, 73% 5%, 89% 13%, 98% 8%, 95% 28%, 100% 48%, 96% 68%, 99% 87%, 83% 80%, 69% 91%, 53% 83%, 38% 90%, 23% 81%, 7% 88%, 4% 67%, 0 45%);
+  transform: rotate(2deg);
+}
+
+@keyframes noteReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 800px) {
+  .gitMap { opacity: 0.12; }
+  .noteTopRight,
+  .noteBottomLeft { display: none; }
+  .noteTopLeft {
+    top: 4%;
+    left: -5%;
+    width: 10.5rem;
+    filter: drop-shadow(0 7px 10px rgb(51 45 35 / 7%));
+  }
+  .noteTopLeft::before { opacity: 0.4; }
+  .noteTopLeft svg { background-color: rgb(255 252 244 / 68%); }
+  .noteTopLeft .sketch { opacity: 0.28; }
+
+  .noteBottomRight {
+    right: -3.5%;
+    bottom: 2%;
+    width: 10.5rem;
+    filter: drop-shadow(0 7px 10px rgb(51 45 35 / 7%));
+  }
+
+  .noteBottomRight::before { opacity: 0.4; }
+  .noteBottomRight svg { background-color: rgb(255 252 244 / 68%); }
+  .noteBottomRight .handwriting { opacity: 0.27; }
+}
+
+@media (max-width: 480px) {
+  .randomNotes { display: none; }
+  .gitMap { opacity: 0.09; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note { animation: none; }
+}

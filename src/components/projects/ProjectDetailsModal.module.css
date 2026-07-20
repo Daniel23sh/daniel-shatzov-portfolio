@@ -1,0 +1,53 @@
+.dialog {
+  opacity: 0;
+  transform: translateY(0.75rem) scale(0.985);
+  transition:
+    opacity 180ms ease-out,
+    transform 180ms ease-out,
+    display 180ms allow-discrete,
+    overlay 180ms allow-discrete;
+}
+
+.dialog[open] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.dialog::backdrop {
+  background-color: rgb(23 32 51 / 0%);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 180ms ease-out,
+    backdrop-filter 180ms ease-out,
+    display 180ms allow-discrete,
+    overlay 180ms allow-discrete;
+}
+
+.dialog[open]::backdrop {
+  background-color: rgb(23 32 51 / 68%);
+  backdrop-filter: blur(2px);
+}
+
+@starting-style {
+  .dialog[open] {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.985);
+  }
+
+  .dialog[open]::backdrop {
+    background-color: rgb(23 32 51 / 0%);
+    backdrop-filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog::backdrop {
+    transition: none;
+  }
+
+  .dialog,
+  .dialog[open] {
+    transform: none;
+  }
+}

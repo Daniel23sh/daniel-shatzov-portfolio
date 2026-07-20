@@ -34,7 +34,7 @@
 
 html {
   min-height: 100%;
-  background-color: var(--color-canvas);
+  background-color: #f4efe8;
 }
 
 body {
@@ -42,11 +42,22 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   flex-direction: column;
-  background-color: var(--color-canvas);
+  background-color: #f4efe8;
   color: var(--color-ink);
   font-family: var(--font-inter);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.site-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
 }
 
 :focus-visible {

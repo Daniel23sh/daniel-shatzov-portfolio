@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
 
+import { PortfolioBackground } from "@/components/portfolio-background/PortfolioBackground";
 import { siteConfig } from "@/content/portfolio";
 
 import "./globals.css";
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${ebGaramond.variable}`}>
-      <body>{children}</body>
+      <body>
+        <PortfolioBackground />
+        <div className="site-content">{children}</div>
+      </body>
     </html>
   );
 }

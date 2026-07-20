@@ -119,7 +119,7 @@ export function Hero() {
             height={1254}
             preload
             sizes="(min-width: 1280px) 520px, (min-width: 640px) 500px, 86vw"
-            className="relative z-10 h-auto w-full object-contain"
+            className="relative z-10 h-auto w-full object-contain mb-10"
           />
         </div>
       </div>
