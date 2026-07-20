@@ -78,10 +78,10 @@ export function CoreToolkit() {
       <div className="mx-auto w-full max-w-[68rem]">
         <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <div className="flex items-center gap-3">
-            <span aria-hidden="true" className="h-px w-7 bg-accent-warm/70" />
+            <span aria-hidden="true" className="h-px w-7 bg-accent-warm" />
             <h3
               id={toolkitHeadingId}
-              className="text-xs font-semibold tracking-[0.18em] text-accent-warm-text uppercase sm:text-sm"
+              className="text-xs font-semibold tracking-[0.18em] text-accent-warm uppercase sm:text-sm"
             >
               {coreToolkitContent.heading}
             </h3>
