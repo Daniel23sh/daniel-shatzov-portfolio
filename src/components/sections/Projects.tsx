@@ -1,4 +1,5 @@
-import { ProjectShowcase } from "@/components/projects/ProjectShowcase";
+import { ProjectDetailsModal } from "@/components/projects/ProjectDetailsModal";
+import { ProjectPreview } from "@/components/projects/ProjectPreview";
 import { projects, projectsSectionContent } from "@/content/portfolio";
 
 const projectsHeadingId = "projects-heading";
@@ -8,7 +9,7 @@ export function Projects() {
     <section
       id="projects"
       aria-labelledby={projectsHeadingId}
-      className="scroll-mt-24 border-y border-border bg-transparent px-page-gutter py-section"
+      className="scroll-mt-16 border-y border-border bg-transparent px-page-gutter py-section"
     >
       <div className="mx-auto w-full max-w-content">
         <header className="max-w-3xl">
@@ -26,11 +27,17 @@ export function Projects() {
           </p>
         </header>
 
-        <div className="mt-12 space-y-12 md:mt-16 md:space-y-16 lg:space-y-20">
-          {projects.map((project, index) => (
-            <ProjectShowcase key={project.id} project={project} index={index} />
-          ))}
-        </div>
+        <ProjectDetailsModal projects={projects}>
+          <div className="mt-8 md:mt-10 lg:mt-6">
+            {projects.map((project, index) => (
+              <ProjectPreview
+                key={project.id}
+                project={project}
+                index={index}
+              />
+            ))}
+          </div>
+        </ProjectDetailsModal>
       </div>
     </section>
   );
