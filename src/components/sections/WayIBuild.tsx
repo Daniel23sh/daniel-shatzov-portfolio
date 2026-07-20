@@ -1,36 +1,30 @@
 import type { ReactNode } from "react";
+import type { IconType } from "react-icons";
+import { LuFileText, LuSearch } from "react-icons/lu";
 
+import { MobileStepReturnLink } from "@/components/sections/MobileStepReturnLink";
 import styles from "@/components/sections/WayIBuild.module.css";
 import { wayIBuildContent } from "@/content/portfolio";
 import type { ProcessIcon } from "@/types/portfolio";
 
 const wayIBuildHeadingId = "way-i-build-heading";
+const wayIBuildFirstStepId = "way-i-build-step-1";
 
-const processIcons = {
-  understand: (
-    <>
-      <path d="M27.5 15.3C27.5 21.4 22.4 26 15.9 26c-1.8 0-3.5-.4-5.1-1.1L4.5 27l1.7-5.3A10.3 10.3 0 0 1 4.5 16C4.5 9.7 9.6 5 16 5s11.5 4.2 11.5 10.3Z" />
-      <circle cx="11" cy="16" r="0.65" fill="currentColor" stroke="none" />
-      <circle cx="16" cy="16" r="0.65" fill="currentColor" stroke="none" />
-      <circle cx="21" cy="16" r="0.65" fill="currentColor" stroke="none" />
-    </>
-  ),
+const libraryProcessIcons = {
+  understand: LuSearch,
+  plan: LuFileText,
+} satisfies Partial<Record<ProcessIcon, IconType>>;
+
+const processIcons: Partial<Record<ProcessIcon, ReactNode>> = {
   architect: (
     <>
-      <rect x="5" y="4" width="22" height="7" rx="0.75" />
-      <rect x="5" y="15" width="9" height="13" rx="0.75" />
-      <rect x="18" y="15" width="9" height="5" rx="0.75" />
-      <rect x="18" y="23" width="9" height="5" rx="0.75" />
-    </>
-  ),
-  plan: (
-    <>
-      <rect x="7" y="6" width="18" height="22" rx="1.5" />
-      <path d="M12 6V5.25C12 4 13 3 14.25 3h3.5C19 3 20 4 20 5.25V6" />
-      <path d="m10.5 13 1.25 1.25 2.25-2.5" />
-      <path d="M16.5 13h5" />
-      <path d="m10.5 20 1.25 1.25 2.25-2.5" />
-      <path d="M16.5 20h5" />
+      <path d="M8 5.25h16a3.5 3.5 0 1 1 0 7H8a3.5 3.5 0 1 1 0-7Z" />
+      <circle cx="8" cy="8.75" r="1.25" />
+      <circle cx="24" cy="8.75" r="1.25" />
+      <path d="M10.5 12.25h11" />
+      <path d="M10.5 13.75v11.5M13.25 13.75v11.5M16 13.75v11.5M18.75 13.75v11.5M21.5 13.75v11.5" />
+      <path d="M8.5 25.25h15v2.5h-15" />
+      <path d="M6 27.75h20v2.5H6v-2.5Z" />
     </>
   ),
   build: (
@@ -52,9 +46,22 @@ const processIcons = {
       <path d="M21 9h7v7" />
     </>
   ),
-} satisfies Record<ProcessIcon, ReactNode>;
+};
 
 function ProcessStepIcon({ icon }: { icon: ProcessIcon }) {
+  const LibraryIcon = libraryProcessIcons[icon as keyof typeof libraryProcessIcons];
+
+  if (LibraryIcon) {
+    return (
+      <LibraryIcon
+        aria-hidden="true"
+        focusable="false"
+        strokeWidth={0.75}
+        className={styles.iconGraphic}
+      />
+    );
+  }
+
   return (
     <svg
       viewBox="0 0 32 32"
@@ -77,17 +84,20 @@ export function WayIBuild() {
     <section
       id="way-i-build"
       aria-labelledby={wayIBuildHeadingId}
-      className="scroll-mt-20 border-b border-border bg-transparent px-page-gutter py-section"
+      className="scroll-mt-18 border-b border-border bg-transparent px-page-gutter py-section"
     >
       <div className="mx-auto w-full max-w-content">
         <header className="max-w-[49rem]">
-          <h2
-            id={wayIBuildHeadingId}
-            className="font-display text-[clamp(2.75rem,7vw,4.25rem)] leading-[0.96] font-semibold tracking-[-0.025em] text-ink"
-          >
-            {wayIBuildContent.heading}
-          </h2>
-          <p className="mt-4 text-base leading-7 font-medium text-accent-warm-text sm:text-lg">
+          <div className="flex items-center gap-4">
+            <span aria-hidden="true" className="h-px w-10 shrink-0 bg-accent-warm" />
+            <h2
+              id={wayIBuildHeadingId}
+              className="font-display text-[clamp(2.75rem,7vw,4.25rem)] leading-[0.96] font-semibold tracking-[-0.025em] text-ink"
+            >
+              {wayIBuildContent.heading}
+            </h2>
+          </div>
+          <p className="mt-4 text-base leading-7 font-medium text-accent-warm sm:text-lg">
             {wayIBuildContent.supportingText}
           </p>
           <p className="mt-5 max-w-[46rem] text-base leading-7 text-muted sm:text-lg sm:leading-8">
@@ -95,28 +105,167 @@ export function WayIBuild() {
           </p>
         </header>
 
-        <ol className={styles.timeline}>
-          {wayIBuildContent.steps.map((step) => {
-            return (
-              <li key={step.number} className={styles.step}>
-                <div className={styles.marker} aria-hidden="true">
-                  <span>{step.number}</span>
-                </div>
-                <div className={styles.body}>
-                  <span className={styles.icon} aria-hidden="true">
-                    <ProcessStepIcon icon={step.icon} />
-                  </span>
-                  <h3 className="mt-2 font-display text-2xl leading-tight font-semibold text-ink min-[75rem]:text-[1.375rem]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 max-w-[34rem] text-base leading-7 text-muted min-[75rem]:mx-auto min-[75rem]:text-[0.9375rem] min-[75rem]:leading-6">
-                    {step.description}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+        <div className={styles.timelineFrame}>
+          <svg
+            viewBox="0 0 1200 48"
+            preserveAspectRatio="none"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            aria-hidden="true"
+            focusable="false"
+            className={styles.feedbackLoop}
+          >
+            <defs>
+              <marker
+                id="feedback-loop-arrow"
+                viewBox="0 0 10 10"
+                refX="8"
+                refY="5"
+                markerWidth="8"
+                markerHeight="8"
+                markerUnits="strokeWidth"
+                orient="auto"
+                overflow="visible"
+              >
+                <path
+                  d="M1 1L8 5L1 9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </marker>
+            </defs>
+
+            <path
+              d="M1045.53 48C882.86 9 317.14 9 154.47 48"
+              strokeDasharray="2 5"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+              markerEnd="url(#feedback-loop-arrow)"
+            />
+          </svg>
+
+          <svg
+            viewBox="0 0 1000 400"
+            preserveAspectRatio="none"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            aria-hidden="true"
+            focusable="false"
+            className={styles.smallTabletFeedbackLoop}
+          >
+            <defs>
+              <marker
+                id="small-tablet-feedback-loop-arrow"
+                viewBox="0 0 10 10"
+                refX="8"
+                refY="5"
+                markerWidth="8"
+                markerHeight="8"
+                markerUnits="strokeWidth"
+                orient="auto"
+                overflow="visible"
+              >
+                <path
+                  d="M1 1L8 5L1 9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </marker>
+            </defs>
+
+            <path
+              d="M115 236C5 236 5 22 115 22"
+              strokeDasharray="2 5"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+              markerEnd="url(#small-tablet-feedback-loop-arrow)"
+            />
+          </svg>
+
+          <ol className={styles.timeline}>
+            {wayIBuildContent.steps.map((step) => {
+              return (
+                <li
+                  key={step.number}
+                  id={step.number === "1" ? wayIBuildFirstStepId : undefined}
+                  className={styles.step}
+                >
+                  <div className={styles.marker} aria-hidden="true">
+                    <span>{step.number}</span>
+                  </div>
+                  <div className={styles.body}>
+                    <span className={styles.icon} aria-hidden="true">
+                      <ProcessStepIcon icon={step.icon} />
+                    </span>
+                    <h3
+                      className={`mt-2 font-display leading-tight text-ink ${styles.stepTitle}`}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      className={`mt-2 max-w-[34rem] text-muted ${styles.stepDescription}`}
+                    >
+                      {step.description}
+                    </p>
+                    {step.number === "6" ? (
+                      <div className={styles.mobileReturn}>
+                        <MobileStepReturnLink targetId={wayIBuildFirstStepId} />
+                        <svg
+                          viewBox="0 0 260 64"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.25"
+                          aria-hidden="true"
+                          focusable="false"
+                          className={styles.mobileReturnArrow}
+                        >
+                          <defs>
+                            <marker
+                              id="mobile-return-arrowhead"
+                              viewBox="0 0 10 10"
+                              refX="8"
+                              refY="5"
+                              markerWidth="8"
+                              markerHeight="8"
+                              markerUnits="strokeWidth"
+                              orient="auto"
+                              overflow="visible"
+                            >
+                              <path
+                                d="M1 1L8 5L1 9"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.25"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </marker>
+                          </defs>
+                          <circle cx="8" cy="52" r="4" />
+                          <path
+                            d="M16 52H104C132 52 144 38 144 12"
+                            strokeDasharray="2 5"
+                            strokeLinecap="round"
+                            vectorEffect="non-scaling-stroke"
+                            markerEnd="url(#mobile-return-arrowhead)"
+                          />
+                        </svg>
+                      </div>
+                    ) : null}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );
