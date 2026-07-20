@@ -37,13 +37,54 @@ export function Header() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const desktopNavigation = window.matchMedia("(min-width: 80rem)");
+    let observer: IntersectionObserver | null = null;
+
+    function observeDesktopSections() {
+      observer?.disconnect();
+      observer = null;
+
+      if (!desktopNavigation.matches) {
+        setSelectedHref(null);
+        return;
+      }
+
+      const sections = headerNavigationItems.flatMap((item) => {
+        const section = document.querySelector<HTMLElement>(item.href);
+
+        return section ? [{ href: item.href, section }] : [];
+      });
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          const activeEntry = entries.find((entry) => entry.isIntersecting);
+          const activeSection = activeEntry
+            ? sections.find(({ section }) => section === activeEntry.target)
+            : null;
+
+          setSelectedHref(activeSection?.href ?? null);
+        },
+        {
+          rootMargin: "-28% 0px -71% 0px",
+          threshold: 0,
+        },
+      );
+
+      sections.forEach(({ section }) => observer?.observe(section));
+    }
+
+    observeDesktopSections();
+    desktopNavigation.addEventListener("change", observeDesktopSections);
+
+    return () => {
+      desktopNavigation.removeEventListener("change", observeDesktopSections);
+      observer?.disconnect();
+    };
+  }, []);
+
   function closeMenu() {
     setIsMenuOpen(false);
-  }
-
-  function selectNavigationItem(href: NavigationHref) {
-    setSelectedHref(href);
-    closeMenu();
   }
 
   return (
@@ -179,22 +220,17 @@ export function Header() {
             className="mx-auto max-h-[calc(100dvh-4.5rem)] w-full max-w-content overflow-y-auto px-page-gutter py-5"
           >
             <ul className="flex flex-col">
-              {headerNavigationItems.map((item) => {
-                const isSelected = selectedHref === item.href;
-
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      aria-current={isSelected ? "location" : undefined}
-                      onClick={() => selectNavigationItem(item.href)}
-                      className="flex min-h-12 items-center border-b border-border text-base font-medium text-ink transition-colors hover:text-accent"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                );
-              })}
+              {headerNavigationItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="flex min-h-12 items-center border-b border-border text-base font-medium text-ink transition-colors hover:text-accent"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">

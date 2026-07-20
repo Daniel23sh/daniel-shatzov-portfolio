@@ -1,4 +1,8 @@
-import type { Project } from "@/types/portfolio";
+import type {
+  ProcessStep,
+  Project,
+  ToolkitItem,
+} from "@/types/portfolio";
 
 export const siteConfig = {
   name: "Daniel Shatzov",
@@ -16,7 +20,7 @@ export const siteConfig = {
     href: "#contact",
   },
   contactCta: {
-    label: "Let's Connect",
+    label: "Get in Touch",
     href: "#contact",
   },
   githubUrl: "https://github.com/Daniel23sh",
@@ -30,7 +34,7 @@ export const siteConfig = {
 
 export const navigationItems = [
   { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
+  { label: "The Way I Build", href: "#way-i-build" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -56,6 +60,77 @@ export const projectsSectionContent = {
     architectureTrace: "Architecture Trace",
     builtAround: "Built Around",
   },
+} as const;
+
+export const coreToolkitContent = {
+  heading: "Core Toolkit",
+  supportingText: "A focused stack I use across products.",
+  items: [
+    { label: "React", icon: "react" },
+    { label: "TypeScript", icon: "typescript" },
+    { label: "JavaScript", icon: "javascript" },
+    { label: "Python", icon: "python" },
+    { label: "Node.js", icon: "nodejs" },
+    { label: "FastAPI", icon: "fastapi" },
+    { label: "Fastify", icon: "fastify" },
+    { label: "PostgreSQL", icon: "postgresql" },
+    { label: "Supabase", icon: "supabase" },
+    { label: "Tailwind CSS", icon: "tailwind" },
+    { label: "Docker", icon: "docker" },
+    { label: "Git", icon: "git" },
+    { label: "GitHub", icon: "github" },
+    { label: "OpenAI API", icon: "openai" },
+  ] as const satisfies readonly ToolkitItem[],
+} as const;
+
+export const wayIBuildContent = {
+  heading: "The Way I Build",
+  supportingText: "From a real problem to a well-crafted product.",
+  introduction:
+    "I start by understanding the user problem and the purpose behind it. From there, I shape a clear technical approach, break the work into meaningful stages, build with care, validate the details, and improve through feedback and real use.",
+  steps: [
+    {
+      number: "1",
+      title: "Understand",
+      description:
+        "Clarify the user problem, product goal, and requirements.",
+      icon: "understand",
+    },
+    {
+      number: "2",
+      title: "Architect",
+      description:
+        "Define the technical structure, responsibilities, and integrations.",
+      icon: "architect",
+    },
+    {
+      number: "3",
+      title: "Plan",
+      description: "Break the work into clear stages, milestones, and tasks.",
+      icon: "plan",
+    },
+    {
+      number: "4",
+      title: "Build",
+      description:
+        "Implement the solution across frontend, backend, and data layers.",
+      icon: "build",
+    },
+    {
+      number: "5",
+      title: "Validate",
+      description:
+        "Test behavior, edge cases, reliability, and usability.",
+      icon: "validate",
+    },
+    {
+      number: "6",
+      title: "Improve",
+      description:
+        "Refine the product based on feedback, findings, and real usage.",
+      icon: "improve",
+    },
+  ] as const satisfies readonly ProcessStep[],
 } as const;
 
 export const projects = [
@@ -137,7 +212,7 @@ export const projects = [
     number: "03",
     title: "WhatsApp Google Calendar Bot",
     subtitle: "Secure Bilingual Calendar Assistant",
-    role: "Solo Full-Stack Developer",
+    role: "Full-Stack Developer",
     duration: "February 2026 – July 2026",
     status: "Secure, Tested MVP",
     visibility: "Public",
@@ -163,6 +238,12 @@ export const projects = [
       src: "/images/projects/whatsapp-bot/cover.png",
       alt: "WhatsApp calendar assistant conversation preview",
     },
-    links: [],
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/Daniel23sh/whatsapp-google-calendar-bot",
+        external: true,
+      },
+    ],
   },
 ] as const satisfies readonly Project[];

@@ -25,3 +25,39 @@ export type Project = {
   };
   readonly links: readonly ProjectLink[];
 };
+
+export type ToolkitIcon =
+  | "react"
+  | "typescript"
+  | "javascript"
+  | "python"
+  | "nodejs"
+  | "fastapi"
+  | "fastify"
+  | "postgresql"
+  | "supabase"
+  | "tailwind"
+  | "docker"
+  | "git"
+  | "openai"
+  | "github";
+
+export type ToolkitItem = {
+  readonly label: string;
+  readonly icon: ToolkitIcon;
+};
+
+export type ProcessIcon =
+  | "understand"
+  | "architect"
+  | "plan"
+  | "build"
+  | "validate"
+  | "improve";
+
+export type ProcessStep = {
+  readonly number: `${1 | 2 | 3 | 4 | 5 | 6}`;
+  readonly title: string;
+  readonly description: string;
+  readonly icon: ProcessIcon;
+};

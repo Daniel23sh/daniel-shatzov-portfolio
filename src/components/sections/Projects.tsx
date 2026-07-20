@@ -1,3 +1,4 @@
+import { CoreToolkit } from "@/components/projects/CoreToolkit";
 import { ProjectDetailsModal } from "@/components/projects/ProjectDetailsModal";
 import { ProjectPreview } from "@/components/projects/ProjectPreview";
 import { projects, projectsSectionContent } from "@/content/portfolio";
@@ -38,6 +39,8 @@ export function Projects() {
             ))}
           </div>
         </ProjectDetailsModal>
+
+        <CoreToolkit />
       </div>
     </section>
   );
