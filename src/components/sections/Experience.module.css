@@ -1,0 +1,349 @@
+.header {
+  max-width: 50rem;
+  margin-bottom: 3.5rem;
+}
+
+.supportingText {
+  max-width: 46rem;
+  margin-top: 1rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+.timeline {
+  --timeline-gap: 4rem;
+
+  display: grid;
+  row-gap: var(--timeline-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  min-width: 0;
+}
+
+.date {
+  display: none;
+}
+
+.marker {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  min-height: 2.75rem;
+  align-self: stretch;
+  justify-content: center;
+}
+
+.marker::before {
+  position: absolute;
+  z-index: -1;
+  top: -0.75rem;
+  bottom: calc(-1 * var(--timeline-gap) - 1.375rem);
+  left: 50%;
+  width: 1px;
+  content: "";
+  background: color-mix(
+    in srgb,
+    var(--color-accent-warm) 55%,
+    var(--color-border)
+  );
+}
+
+.item:last-child .marker::before {
+  bottom: 0;
+}
+
+.item:first-child .marker::after,
+.item:last-child .marker::after {
+  position: absolute;
+  z-index: 0;
+  left: calc(50% + 0.5px);
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  content: "";
+  background: var(--color-accent-warm);
+}
+
+.item:first-child .marker::after {
+  top: -0.75rem;
+  transform: translate(-50%, -50%);
+}
+
+.item:last-child .marker::after {
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+
+.marker > span {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-accent-warm);
+  border-radius: 50%;
+  background: var(--color-canvas);
+  color: var(--color-accent-warm-text);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.content {
+  min-width: 0;
+  max-width: 50rem;
+  padding-left: 0.75rem;
+}
+
+.mobileDate,
+.date {
+  color: var(--color-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mobileDate {
+  margin-bottom: 0.625rem;
+}
+
+.role {
+  color: var(--color-ink);
+  font-family: var(--font-eb-garamond);
+  font-size: clamp(1.75rem, 8vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-top: 0.625rem;
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+}
+
+.organization {
+  color: color-mix(in srgb, var(--color-ink) 82%, var(--color-muted));
+  font-weight: 500;
+}
+
+.location {
+  color: var(--color-muted);
+}
+
+.description {
+  display: grid;
+  max-width: 48rem;
+  margin-top: 1.25rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.additionalFacts {
+  visibility: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease-in,
+    visibility 0s linear 280ms;
+}
+
+.additionalFactsInner {
+  display: grid;
+  min-height: 0;
+  overflow: hidden;
+  row-gap: 0.625rem;
+}
+
+.additionalFactsInner > :first-child {
+  margin-top: 0.625rem;
+}
+
+.additionalFactsExpanded {
+  visibility: visible;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.moreButton {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2.75rem;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 0.375rem;
+  margin-top: 0.625rem;
+  padding: 0 0.125rem;
+  background: transparent;
+  color: var(--color-accent-warm-text);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+
+.moreButtonIcon {
+  position: relative;
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-accent-warm);
+  border-radius: 50%;
+}
+
+.moreButtonIcon::before,
+.moreButtonIcon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.moreButtonIcon::before {
+  width: 0.5rem;
+  height: 1px;
+}
+
+.moreButtonIcon::after {
+  width: 1px;
+  height: 0.5rem;
+  transition:
+    opacity 160ms ease-out,
+    transform 200ms ease-out;
+}
+
+.moreButtonIconExpanded::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) scaleY(0);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-accent-warm) 72%,
+      var(--color-border)
+    );
+  border-radius: 0.375rem;
+  padding: 0.4375rem 0.75rem;
+  color: var(--color-accent-warm-text);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  .header {
+    margin-bottom: 4rem;
+  }
+
+  .supportingText {
+    font-size: 1.125rem;
+    line-height: 2rem;
+  }
+
+  .timeline {
+    --timeline-gap: 4.5rem;
+  }
+
+  .item {
+    grid-template-columns: 9rem 3rem minmax(0, 1fr);
+  }
+
+  .date {
+    display: block;
+    padding-top: 0.75rem;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+
+  .mobileDate {
+    display: none;
+  }
+
+  .content {
+    padding-left: 1.25rem;
+  }
+
+  .metadata {
+    font-size: 1rem;
+    line-height: 1.625rem;
+  }
+
+  .additionalFacts {
+    visibility: visible;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition: none;
+  }
+
+  .moreButton {
+    display: none;
+  }
+
+  .tags li {
+    padding: 0.5rem 0.875rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .header {
+    margin-bottom: 4.5rem;
+  }
+
+  .timeline {
+    --timeline-gap: 5rem;
+  }
+
+  .item {
+    grid-template-columns: minmax(10rem, 12.5rem) 3.5rem minmax(0, 1fr);
+  }
+
+  .date {
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+  }
+
+  .content {
+    padding-left: 2rem;
+  }
+}

@@ -76,7 +76,7 @@ body {
 @media (min-width: 64rem) {
   :root {
     --page-gutter: clamp(3rem, 5vw, 4rem);
-    --section-spacing: clamp(7.5rem, 10vw, 10rem);
+    --section-spacing: clamp(6rem, 8vw, 8rem);
   }
 }
 

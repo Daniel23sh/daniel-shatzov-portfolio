@@ -1,4 +1,5 @@
 import type {
+  ExperienceItem,
   ProcessStep,
   Project,
   ToolkitItem,
@@ -132,6 +133,46 @@ export const wayIBuildContent = {
     },
   ] as const satisfies readonly ProcessStep[],
 } as const;
+
+export const experienceSectionContent = {
+  heading: "Experience",
+  supportingText:
+    "Where responsibility, systems, and problem-solving came together.",
+} as const;
+
+export const experiences = [
+  {
+    id: "elbit-systems",
+    number: "01",
+    startDate: "Sep 2021",
+    endDate: "Oct 2023",
+    role: "SCCM Administrator",
+    organization: "Elbit Systems",
+    division: "Elisra Division",
+    location: "Holon, Israel",
+    description: [
+      "Promoted from technical support to SCCM administration and joined the team responsible for managing, maintaining, and supporting thousands of enterprise computers across Elbit Systems and its subsidiaries.",
+      "Developed PowerShell, SCCM, and SQL automation for software deployment, system monitoring, reporting, and internal IT workflows, improving operational efficiency and reliability.",
+      "Built a cloud-migration readiness tool that consolidated employee and device data, gave managers scoped visibility into migration status, and enabled them to initiate and track migration workflows.",
+    ],
+    tags: ["PowerShell", "SCCM", "SQL", "Automation"],
+  },
+  {
+    id: "military-intelligence",
+    number: "02",
+    startDate: "Aug 2018",
+    endDate: "Apr 2021",
+    role: "Network Administrator & Shift Lead",
+    organization: "Israeli Military Intelligence",
+    location: "Israel",
+    description: [
+      "Coordinated a five-person shift providing Tier 1–2 network and helpdesk support to more than 500 users across a primary base and multiple additional sites.",
+      "Prioritized incidents, assigned tasks, and maintained service continuity during high-pressure periods, night shifts, and operationally intensive days.",
+      "Diagnosed and resolved network, endpoint, hardware, software, permissions, printer, Active Directory, Microsoft 365, imaging, SCCM, and internal IT system issues in a high-security environment.",
+    ],
+    tags: ["Team Leadership", "Networking", "500+ Users", "Tier 1 – 2"],
+  },
+] as const satisfies readonly ExperienceItem[];
 
 export const projects = [
   {

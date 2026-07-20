@@ -61,3 +61,16 @@ export type ProcessStep = {
   readonly description: string;
   readonly icon: ProcessIcon;
 };
+
+export type ExperienceItem = {
+  readonly id: string;
+  readonly number: `${number}`;
+  readonly startDate: string;
+  readonly endDate: string;
+  readonly role: string;
+  readonly organization: string;
+  readonly division?: string;
+  readonly location: string;
+  readonly description: readonly string[];
+  readonly tags: readonly string[];
+};

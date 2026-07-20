@@ -1,4 +1,5 @@
 import { Header } from "@/components/layout/Header";
+import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { WayIBuild } from "@/components/sections/WayIBuild";
@@ -11,6 +12,7 @@ export default function Home() {
         <Hero />
         <Projects />
         <WayIBuild />
+        <Experience />
       </main>
     </>
   );

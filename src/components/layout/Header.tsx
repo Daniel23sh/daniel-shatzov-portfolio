@@ -18,6 +18,7 @@ export function Header() {
   const [selectedHref, setSelectedHref] = useState<NavigationHref | null>(
     null,
   );
+  const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -39,47 +40,76 @@ export function Header() {
 
   useEffect(() => {
     const desktopNavigation = window.matchMedia("(min-width: 80rem)");
-    let observer: IntersectionObserver | null = null;
+    const sections = headerNavigationItems.flatMap((item) => {
+      const section = document.querySelector<HTMLElement>(item.href);
 
-    function observeDesktopSections() {
-      observer?.disconnect();
-      observer = null;
+      return section ? [{ href: item.href, section }] : [];
+    });
+    let animationFrame: number | null = null;
+    let lastSelectedHref: NavigationHref | null = null;
 
-      if (!desktopNavigation.matches) {
-        setSelectedHref(null);
+    function selectHref(href: NavigationHref | null) {
+      if (lastSelectedHref === href) {
         return;
       }
 
-      const sections = headerNavigationItems.flatMap((item) => {
-        const section = document.querySelector<HTMLElement>(item.href);
-
-        return section ? [{ href: item.href, section }] : [];
-      });
-
-      observer = new IntersectionObserver(
-        (entries) => {
-          const activeEntry = entries.find((entry) => entry.isIntersecting);
-          const activeSection = activeEntry
-            ? sections.find(({ section }) => section === activeEntry.target)
-            : null;
-
-          setSelectedHref(activeSection?.href ?? null);
-        },
-        {
-          rootMargin: "-28% 0px -71% 0px",
-          threshold: 0,
-        },
-      );
-
-      sections.forEach(({ section }) => observer?.observe(section));
+      lastSelectedHref = href;
+      setSelectedHref(href);
     }
 
-    observeDesktopSections();
-    desktopNavigation.addEventListener("change", observeDesktopSections);
+    function updateSelectedSection() {
+      animationFrame = null;
+
+      if (!desktopNavigation.matches) {
+        selectHref(null);
+        return;
+      }
+
+      const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+      const activationY = Math.min(
+        window.innerHeight - 1,
+        Math.max(headerBottom + 1, window.innerHeight * 0.28),
+      );
+      const activeSection = sections.find(({ section }) => {
+        const bounds = section.getBoundingClientRect();
+
+        return bounds.top <= activationY && bounds.bottom > activationY;
+      });
+      const activeHref = activeSection?.href ?? null;
+
+      selectHref(activeHref);
+    }
+
+    function scheduleUpdate() {
+      if (animationFrame !== null) {
+        return;
+      }
+
+      animationFrame = window.requestAnimationFrame(updateSelectedSection);
+    }
+
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+
+    if (headerRef.current) {
+      resizeObserver.observe(headerRef.current);
+    }
+    sections.forEach(({ section }) => resizeObserver.observe(section));
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+    desktopNavigation.addEventListener("change", scheduleUpdate);
 
     return () => {
-      desktopNavigation.removeEventListener("change", observeDesktopSections);
-      observer?.disconnect();
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+      desktopNavigation.removeEventListener("change", scheduleUpdate);
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -88,7 +118,10 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 isolate border-b border-border bg-canvas">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 isolate border-b border-border bg-canvas"
+    >
       <div className="mx-auto flex h-18 w-full max-w-content items-center justify-between gap-3 px-page-gutter xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-4">
         <Link
           href="/"
@@ -129,7 +162,6 @@ export function Header() {
                   <a
                     href={item.href}
                     aria-current={isSelected ? "location" : undefined}
-                    onClick={() => setSelectedHref(item.href)}
                     className="relative inline-flex min-h-11 items-center px-1 pb-2 pt-2 text-sm font-medium text-muted transition-colors hover:text-ink"
                   >
                     {item.label}
