@@ -20,7 +20,7 @@ export const siteConfig = {
     href: "#contact",
   },
   contactCta: {
-    label: "Let's Connect",
+    label: "Get in Touch",
     href: "#contact",
   },
   githubUrl: "https://github.com/Daniel23sh",
