@@ -281,17 +281,7 @@ export function Header() {
               ))}
             </ul>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              <a
-                href={siteConfig.linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={closeMenu}
-                className="inline-flex min-h-12 items-center justify-center rounded-button border border-border bg-surface px-4 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent"
-              >
-                LinkedIn
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <a
                 href={siteConfig.resumeUrl}
                 download
