@@ -168,9 +168,9 @@ function EditorialProjectPreview({
             x2="198"
             y2="378"
           />
-          
-          
-          
+
+
+
           <path d="M 72 214 L 158 300 L 346 104" />
         </svg>
       </div>

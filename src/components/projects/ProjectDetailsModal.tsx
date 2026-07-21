@@ -9,6 +9,7 @@ import {
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
 } from "react";
+import { LuX } from "react-icons/lu";
 
 import { ProjectDetails } from "@/components/projects/ProjectDetails";
 import styles from "@/components/projects/ProjectDetailsModal.module.css";
@@ -33,9 +34,11 @@ export function ProjectDetailsModal({
   projects,
 }: ProjectDetailsModalProps) {
   const [activeProjectId, setActiveProjectId] = useState<ProjectId | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollPositionRef = useRef(0);
   const bodyStyleSnapshotRef = useRef<BodyStyleSnapshot | null>(null);
   const activeProject = activeProjectId
@@ -112,6 +115,9 @@ export function ProjectDetailsModal({
 
   useEffect(
     () => () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
       unlockPageScroll();
     },
     [unlockPageScroll],
@@ -126,6 +132,7 @@ export function ProjectDetailsModal({
 
     triggerRef.current = trigger;
     lockPageScroll();
+    setIsClosing(false);
     setActiveProjectId(project.id);
   };
 
@@ -144,9 +151,28 @@ export function ProjectDetailsModal({
     }
   };
 
-  const closeDialog = () => {
-    dialogRef.current?.close();
-  };
+  const closeDialog = useCallback(() => {
+    const dialog = dialogRef.current;
+
+    if (!dialog?.open || isClosing) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      dialog.close();
+      return;
+    }
+
+    setIsClosing(true);
+    closeTimerRef.current = setTimeout(() => {
+      dialog.close();
+      closeTimerRef.current = null;
+    }, 150);
+  }, [isClosing]);
 
   const handleDialogClick = (event: ReactMouseEvent<HTMLDialogElement>) => {
     if (event.target === event.currentTarget) {
@@ -166,6 +192,7 @@ export function ProjectDetailsModal({
   const handleDialogClose = () => {
     const trigger = triggerRef.current;
 
+    setIsClosing(false);
     setActiveProjectId(null);
     unlockPageScroll();
 
@@ -176,7 +203,7 @@ export function ProjectDetailsModal({
   };
 
   return (
-    <div onClick={handlePreviewClick}>
+    <div onClickCapture={handlePreviewClick}>
       {children}
 
       <dialog
@@ -187,18 +214,23 @@ export function ProjectDetailsModal({
         onClick={handleDialogClick}
         onClose={handleDialogClose}
         onKeyDown={handleDialogKeyDown}
-        className={`${styles.dialog} m-auto max-h-[calc(100dvh-1rem)] w-[calc(100%-1rem)] max-w-[68rem] overflow-hidden rounded-[1.25rem] border border-border bg-surface p-0 text-ink shadow-card-hover sm:max-h-[90dvh] sm:w-[calc(100%-2rem)] sm:rounded-[1.75rem]`}
+        onCancel={(event) => {
+          event.preventDefault();
+          closeDialog();
+        }}
+        className={`${styles.dialog} ${isClosing ? styles.closing : ""}`}
       >
         {activeProject ? (
-          <div className="max-h-[calc(100dvh-1rem)] overflow-y-auto overscroll-contain sm:max-h-[90dvh]">
-            <div className="sticky top-0 z-20 flex justify-end border-b border-border/70 bg-surface/95 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3 sm:px-6 sm:pt-5">
+          <div className={styles.scroller}>
+            <div className={styles.closeLayer}>
               <button
                 ref={closeButtonRef}
                 type="button"
                 onClick={closeDialog}
-                className="inline-flex min-h-11 items-center justify-center rounded-button border border-border bg-surface px-4 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent"
+                aria-label={projectsSectionContent.modal.closeLabel}
+                className="pointer-events-auto inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-ink/25 bg-surface/92 text-ink shadow-card transition-colors hover:border-accent hover:text-accent"
               >
-                {projectsSectionContent.modal.closeLabel}
+                <LuX aria-hidden="true" className="size-6" />
               </button>
             </div>
 
@@ -206,7 +238,7 @@ export function ProjectDetailsModal({
 
             <div
               aria-hidden="true"
-              className="h-[max(0.5rem,env(safe-area-inset-bottom))]"
+              className="h-[max(1rem,env(safe-area-inset-bottom))]"
             />
           </div>
         ) : null}
