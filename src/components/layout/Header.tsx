@@ -146,7 +146,7 @@ export function Header() {
         >
           <span className="pointer-events-none relative size-9 shrink-0 overflow-hidden rounded-[0.625rem]">
             <Image
-              src="/images/brand/ds-monogram-transparent.png"
+              src="/images/brand/ds-monogram.png"
               alt=""
               fill
               draggable={false}
