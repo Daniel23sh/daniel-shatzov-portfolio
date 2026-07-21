@@ -50,8 +50,8 @@ export function ProjectBackdrop({
       <span
         className={`absolute top-[17%] hidden h-px w-6 lg:block ${detailColor[projectId]} ${
           visualOnLeft
-            ? "right-[calc(8%_-_0.75rem)]"
-            : "left-[calc(8%_-_0.75rem)]"
+            ? "right-[calc(8%_-_1rem)]"
+            : "left-[calc(8%_-_1rem)]"
         }`}
       />
       <span
