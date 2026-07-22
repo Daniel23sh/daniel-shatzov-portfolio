@@ -23,7 +23,7 @@ export function Education() {
     <section
       id="education"
       aria-labelledby={educationHeadingId}
-      className="scroll-mt-18 border-b border-border bg-transparent px-page-gutter"
+      className="scroll-mt-18 bg-transparent px-page-gutter"
     >
       <div className={styles.inner}>
         <div className={styles.layout}>
