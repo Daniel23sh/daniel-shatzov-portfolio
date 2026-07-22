@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
 
 import { PortfolioBackground } from "@/components/portfolio-background/PortfolioBackground";
+import { getSiteOrigin, siteMetadata } from "@/content/site-metadata";
 import { siteConfig } from "@/content/portfolio";
 
 import "./globals.css";
@@ -18,9 +19,77 @@ const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
 });
 
+const siteOrigin = getSiteOrigin();
+const socialImageUrl = siteOrigin
+  ? new URL(siteMetadata.socialImage.path, siteOrigin)
+  : undefined;
+
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | ${siteConfig.role}`,
-  description: siteConfig.supportingText,
+  ...(siteOrigin ? { metadataBase: siteOrigin } : {}),
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    locale: siteMetadata.locale,
+    ...(siteOrigin ? { url: siteOrigin } : {}),
+    ...(socialImageUrl
+      ? {
+          images: [
+            {
+              url: socialImageUrl,
+              width: siteMetadata.socialImage.width,
+              height: siteMetadata.socialImage.height,
+              type: siteMetadata.socialImage.type,
+              alt: siteMetadata.socialImage.alt,
+            },
+          ],
+        }
+      : {}),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    ...(socialImageUrl
+      ? {
+          images: [
+            {
+              url: socialImageUrl,
+              alt: siteMetadata.socialImage.alt,
+            },
+          ],
+        }
+      : {}),
+  },
+};
+
+const personStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  jobTitle: siteConfig.role,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Holon Institute of Technology",
+  },
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "B.Sc. in Computer Science",
+    recognizedBy: {
+      "@type": "CollegeOrUniversity",
+      name: "Holon Institute of Technology",
+    },
+  },
+  sameAs: [siteConfig.githubUrl, siteConfig.linkedinUrl],
 };
 
 export default function RootLayout({
@@ -29,10 +98,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${ebGaramond.variable}`}>
+    <html
+      lang={siteMetadata.language}
+      className={`${inter.variable} ${ebGaramond.variable}`}
+    >
       <body>
         <PortfolioBackground />
         <div className="site-content">{children}</div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personStructuredData).replace(/</g, "\\u003c"),
+          }}
+        />
       </body>
     </html>
   );
