@@ -74,8 +74,8 @@ const queryOpsProductPoster = {
   projectName: "QueryOps AI",
   src: "/images/project-posters/queryops-product-poster.png",
   alt: "QueryOps AI product poster",
-  width: 864,
-  height: 1821,
+  width: 1024,
+  height: 1536,
 } as const;
 
 const checkItProductPoster = {

@@ -226,8 +226,8 @@ export function ProjectPosterPreview({
             />
           )}
         </span>
-        <span className={styles.posterCaption}>
-          <span>Product poster</span>
+        <span className={styles.posterCaption} style={{ marginTop: "10px" }}>
+          <span >Product poster</span>
           <LuArrowUpRight aria-hidden="true" />
         </span>
       </button>
