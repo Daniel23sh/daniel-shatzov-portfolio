@@ -57,6 +57,7 @@ export function ProjectPosterPreview({
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const openedWithKeyboardRef = useRef(false);
   const closeTimerRef = useRef<number | null>(null);
   const scrollPositionRef = useRef(0);
   const bodyStyleSnapshotRef = useRef<BodyStyleSnapshot | null>(null);
@@ -117,11 +118,12 @@ export function ProjectPosterPreview({
     root.style.scrollBehavior = previousScrollBehavior;
   }, []);
 
-  const openPoster = () => {
+  const openPoster = (event: MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
       return;
     }
 
+    openedWithKeyboardRef.current = event.detail === 0;
     lockPageScroll();
     setIsOpen(true);
   };
@@ -164,7 +166,11 @@ export function ProjectPosterPreview({
     unlockPageScroll();
 
     requestAnimationFrame(() => {
-      triggerRef.current?.focus({ preventScroll: true });
+      if (openedWithKeyboardRef.current) {
+        triggerRef.current?.focus({ preventScroll: true });
+      } else {
+        triggerRef.current?.blur();
+      }
     });
   };
 
@@ -220,8 +226,8 @@ export function ProjectPosterPreview({
             />
           )}
         </span>
-        <span className={styles.posterCaption}>
-          <span>Product poster</span>
+        <span className={styles.posterCaption} style={{ marginTop: "10px" }}>
+          <span >Product poster</span>
           <LuArrowUpRight aria-hidden="true" />
         </span>
       </button>

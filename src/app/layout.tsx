@@ -77,17 +77,11 @@ const personStructuredData = {
   "@type": "Person",
   name: siteConfig.name,
   jobTitle: siteConfig.role,
-  alumniOf: {
+  description:
+    "Full-Stack Developer and Computer Science student at Holon Institute of Technology, with expected graduation in August 2026.",
+  affiliation: {
     "@type": "CollegeOrUniversity",
     name: "Holon Institute of Technology",
-  },
-  hasCredential: {
-    "@type": "EducationalOccupationalCredential",
-    credentialCategory: "B.Sc. in Computer Science",
-    recognizedBy: {
-      "@type": "CollegeOrUniversity",
-      name: "Holon Institute of Technology",
-    },
   },
   sameAs: [siteConfig.githubUrl, siteConfig.linkedinUrl],
 };

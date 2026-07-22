@@ -2,19 +2,15 @@ import type { IconType } from "react-icons";
 import {
   SiDocker,
   SiFastapi,
-  SiFastify,
-  SiGit,
   SiGithub,
   SiJavascript,
+  SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
   SiPython,
   SiReact,
-  SiSupabase,
-  SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
-import { TbBrandOpenai } from "react-icons/tb";
 
 import styles from "@/components/projects/CoreToolkit.module.css";
 import { coreToolkitContent } from "@/content/portfolio";
@@ -25,19 +21,15 @@ const toolkitDescriptionId = "core-toolkit-description";
 
 const toolkitIcons = {
   react: SiReact,
-  typescript: SiTypescript,
   javascript: SiJavascript,
+  typescript: SiTypescript,
+  nextjs: SiNextdotjs,
   python: SiPython,
   nodejs: SiNodedotjs,
   fastapi: SiFastapi,
-  fastify: SiFastify,
   postgresql: SiPostgresql,
-  supabase: SiSupabase,
-  tailwind: SiTailwindcss,
   docker: SiDocker,
-  git: SiGit,
   github: SiGithub,
-  openai: TbBrandOpenai,
 } satisfies Record<ToolkitIcon, IconType>;
 
 type ToolkitListProps = {

@@ -1,9 +1,21 @@
 .section {
   --contact-cream: #f4efe8;
+  --contact-edge-height: clamp(2.75rem, 5vw, 4.5rem);
+
   position: relative;
+  isolation: isolate;
   overflow: clip;
-  background: var(--color-ink);
+  background: transparent;
   color: var(--contact-cream);
+}
+
+.section::before {
+  position: absolute;
+  z-index: 0;
+  /* Slightly overlap the torn edge to prevent a subpixel seam. */
+  inset: calc(var(--contact-edge-height) - 2px) 0 0;
+  content: "";
+  background: var(--color-ink);
 }
 
 .tornEdge {
@@ -13,21 +25,15 @@
   left: 0;
   display: block;
   width: 100%;
-  height: clamp(2.75rem, 5vw, 4.5rem);
-  color: var(--contact-cream);
+  height: var(--contact-edge-height);
+  color: var(--color-ink);
   pointer-events: none;
+  transform: scaleY(-1);
+  transform-origin: center;
 }
 
 .tornPaper {
   fill: currentColor;
-}
-
-.paperFibers {
-  fill: none;
-  opacity: 0.52;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 0.9;
 }
 
 .inner {

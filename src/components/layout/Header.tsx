@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { navigationItems, siteConfig } from "@/content/portfolio";
@@ -152,8 +151,8 @@ export function Header() {
       className="sticky top-0 z-50 isolate border-b border-border bg-canvas"
     >
       <div className="mx-auto flex h-18 w-full max-w-content items-center justify-between gap-3 px-page-gutter xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-4">
-        <Link
-          href="/"
+        <a
+          href="#main-content"
           aria-label={`${siteConfig.name} home`}
           className="group relative z-10 inline-flex min-h-11 w-fit min-w-0 shrink select-none items-center gap-3 text-ink [-webkit-touch-callout:none]"
         >
@@ -179,7 +178,7 @@ export function Header() {
               {siteConfig.role}
             </span>
           </span>
-        </Link>
+        </a>
 
         <nav aria-label="Primary navigation" className="hidden xl:block">
           <ul className="flex items-center gap-6">

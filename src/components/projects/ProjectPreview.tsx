@@ -40,7 +40,6 @@ export function ProjectPreview({ index, project }: ProjectPreviewProps) {
           <div className="flex min-h-[15rem] items-center justify-center sm:min-h-[17rem] lg:min-h-[16.5rem]">
             <ProjectPreviewVisual
               project={project}
-              placeholderLabel={projectsSectionContent.placeholderLabel}
             />
           </div>
         </Reveal>

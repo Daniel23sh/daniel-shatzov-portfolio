@@ -12,7 +12,7 @@ export function Footer() {
           <span aria-hidden="true"> · </span>
           {siteConfig.role}
         </p>
-        <p className={styles.care}>Built with care, iteration, and a lot of coffee.</p>
+        <p className={styles.care}>Built somewhere between “what if?” and “that works.”</p>
         <p className={styles.year}>© {currentYear}</p>
       </div>
     </footer>

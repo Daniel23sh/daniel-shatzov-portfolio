@@ -12,7 +12,7 @@ export const siteConfig = {
   headline:
     "I turn useful ideas into practical products that make people's work easier.",
   supportingText:
-    "Turning complex ideas into clear, practical, and well-crafted products through a thoughtful, end-to-end approach.",
+    "I work across frontend, backend, data, and AI-assisted systems—from reliable services and database design to polished user experiences.",
   primaryCta: {
     label: "View My Work",
     href: "#projects",
@@ -46,12 +46,10 @@ export const projectsSectionContent = {
   heading: "Selected Work",
   intro:
     "A selection of products I've built across web, mobile, data, automation, and external integrations.",
-  placeholderLabel: "Screenshot coming soon",
   actionLabel: "View Project",
   modal: {
     closeLabel: "Close project details",
     featuredProjectLabel: "Featured project",
-    temporaryLabel: "Temporary content",
     previewLabel: "Product preview",
     storyLabel: "Project story",
     problemLabel: "Problem",
@@ -76,16 +74,16 @@ const queryOpsProductPoster = {
   projectName: "QueryOps AI",
   src: "/images/project-posters/queryops-product-poster.png",
   alt: "QueryOps AI product poster",
-  width: 864,
-  height: 1821,
+  width: 1024,
+  height: 1536,
 } as const;
 
 const checkItProductPoster = {
   projectName: "CheckIT",
   src: "/images/project-posters/checkit-product-poster.png",
   alt: "CheckIT product poster",
-  width: 941,
-  height: 1672,
+  width: 1024,
+  height: 1536,
 } as const;
 
 const whatsappBotProductPoster = {
@@ -100,20 +98,16 @@ export const coreToolkitContent = {
   heading: "Core Toolkit",
   supportingText: "A focused stack I use across products.",
   items: [
-    { label: "React", icon: "react" },
     { label: "TypeScript", icon: "typescript" },
+    { label: "React", icon: "react" },
+    { label: "Next.js", icon: "nextjs" },
     { label: "JavaScript", icon: "javascript" },
     { label: "Python", icon: "python" },
-    { label: "Node.js", icon: "nodejs" },
     { label: "FastAPI", icon: "fastapi" },
-    { label: "Fastify", icon: "fastify" },
+    { label: "Node.js", icon: "nodejs" },
     { label: "PostgreSQL", icon: "postgresql" },
-    { label: "Supabase", icon: "supabase" },
-    { label: "Tailwind CSS", icon: "tailwind" },
     { label: "Docker", icon: "docker" },
-    { label: "Git", icon: "git" },
-    { label: "GitHub", icon: "github" },
-    { label: "OpenAI API", icon: "openai" },
+    { label: "Git & GitHub", icon: "github" },
   ] as const satisfies readonly ToolkitItem[],
 } as const;
 
@@ -264,7 +258,7 @@ export const projects = [
     number: "01",
     title: "QueryOps AI",
     subtitle: "IT Operations · Data Governance",
-    role: "Founder, Product Lead & Full-Stack Developer",
+    role: "Solo Full-Stack Developer",
     duration: "May 2026 – Present",
     status: "Active Development",
     visibility: "Public",
@@ -287,15 +281,11 @@ export const projects = [
     ],
     builtAround:
       "Controlled access, reliable data exploration, and safe operational actions.",
-    image: {
-      src: "/images/projects/queryops/cover.png",
-      alt: "QueryOps AI dashboard preview",
-    },
     poster: queryOpsProductPoster,
     caseStudy: {
       projectLabel: "Full-Stack Project",
       facts: [
-        "Personal full-stack project",
+        "Solo Full-Stack Developer",
         "IT Operations / data governance",
         "React, TypeScript, FastAPI, PostgreSQL",
       ],
@@ -359,7 +349,8 @@ export const projects = [
           "Approvals",
           "Audit trail",
         ],
-        note: "Scoped read-only queries and controlled operational actions are enforced server-side.",
+        scope:
+          "Scoped read-only queries and controlled operational actions are enforced server-side.",
       },
     },
     links: [
@@ -397,10 +388,6 @@ export const projects = [
       "Learning Flow",
     ],
     builtAround: "Adaptive practice and clearer learning workflows.",
-    image: {
-      src: "/images/projects/checkit/cover.png",
-      alt: "CheckIT mobile product preview",
-    },
     poster: checkItProductPoster,
     caseStudy: {
       projectLabel: "Product & Technical Leadership",
@@ -514,10 +501,6 @@ export const projects = [
     ],
     builtAround:
       "Low-friction scheduling without silently guessing when important details are unclear.",
-    image: {
-      src: "/images/projects/whatsapp-bot/calendar-bot-hero.webp",
-      alt: "Offline WhatsApp calendar bot demo interface",
-    },
     poster: whatsappBotProductPoster,
     caseStudy: {
       projectLabel: "Prototype",
