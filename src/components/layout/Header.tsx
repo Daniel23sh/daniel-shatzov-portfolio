@@ -74,6 +74,19 @@ export function Header() {
         window.innerHeight - 1,
         Math.max(headerBottom + 1, window.innerHeight * 0.28),
       );
+      const contactSection = document.querySelector<HTMLElement>(
+        siteConfig.contactCta.href,
+      );
+      const contactTop = contactSection?.getBoundingClientRect().top;
+
+      // Contact is intentionally represented by the dedicated CTA rather than
+      // an underlined navigation item. Once it reaches the activation point,
+      // keep the primary-navigation selection clear through the footer.
+      if (contactTop !== undefined && contactTop <= activationY) {
+        selectHref(null);
+        return;
+      }
+
       const activeSection = sections.find(({ section }) => {
         const bounds = section.getBoundingClientRect();
 
