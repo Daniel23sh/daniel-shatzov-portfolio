@@ -31,6 +31,8 @@ The site uses a warm, handmade editorial visual direction while keeping the work
 
 ## Local development
 
+Use Node.js 22 (see `.nvmrc`) and npm for local development.
+
 1. Clone the repository.
 2. Install dependencies:
 

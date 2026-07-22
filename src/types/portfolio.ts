@@ -77,7 +77,6 @@ export type ProjectCaseStudy = {
     readonly editorial?: ProjectEditorialPreview;
   };
   readonly story: {
-    readonly isPlaceholder?: boolean;
     readonly problem: {
       readonly body: string;
     };
@@ -113,29 +112,21 @@ export type Project = {
   readonly technologies: readonly string[];
   readonly architectureTrace: readonly string[];
   readonly builtAround: string;
-  readonly image: {
-    readonly src: string;
-    readonly alt: string;
-  };
-  readonly poster?: ProjectPoster;
+  readonly poster: ProjectPoster;
   readonly caseStudy: ProjectCaseStudy;
   readonly links: readonly ProjectLink[];
 };
 
 export type ToolkitIcon =
   | "react"
-  | "typescript"
   | "javascript"
+  | "typescript"
+  | "nextjs"
   | "python"
   | "nodejs"
   | "fastapi"
-  | "fastify"
   | "postgresql"
-  | "supabase"
-  | "tailwind"
   | "docker"
-  | "git"
-  | "openai"
   | "github";
 
 export type ToolkitItem = {

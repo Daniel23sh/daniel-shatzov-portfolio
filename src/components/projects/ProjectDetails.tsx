@@ -107,14 +107,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
         </div>
 
         <div className="border-y border-border px-5 py-7 sm:px-10 lg:border-x lg:border-y-0 lg:px-8 lg:py-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <StoryHeading>{modal.buildLabel}</StoryHeading>
-            {story.isPlaceholder ? (
-              <span className="text-[0.625rem] font-semibold tracking-[0.1em] text-muted uppercase">
-                {modal.temporaryLabel}
-              </span>
-            ) : null}
-          </div>
+          <StoryHeading>{modal.buildLabel}</StoryHeading>
 
           {story.build.body ? (
             <p className="mt-3 max-w-[40rem] text-base leading-7 text-ink/82 lg:text-[0.95rem] lg:leading-6">
@@ -122,7 +115,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
             </p>
           ) : null}
 
-          {!story.isPlaceholder && story.build.highlights?.length ? (
+          {story.build.highlights?.length ? (
             <ul className="mt-3 grid gap-2 text-[0.8125rem] leading-5 text-ink/80">
               {story.build.highlights.map((highlight) => (
                 <li key={highlight} className="flex gap-2.5">

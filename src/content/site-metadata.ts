@@ -1,7 +1,7 @@
 export const siteMetadata = {
   title: "Daniel Shatzov — Full-Stack Developer",
   description:
-    "Portfolio of Daniel Shatzov, a computer science graduate and full-stack developer building thoughtful AI-powered products and practical web applications.",
+    "Portfolio of Daniel Shatzov, a Computer Science student and full-stack developer building thoughtful AI-assisted products and practical web applications.",
   language: "en",
   locale: "en_US",
   socialImage: {
