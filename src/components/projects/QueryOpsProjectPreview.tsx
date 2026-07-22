@@ -41,7 +41,7 @@ const productViews = [
     eyebrow: "01 / GOVERNED WORKSPACE",
     title: "Data access with operational context.",
     description:
-      "QueryOps brings scoped exploration, reusable views, and controlled actions into one role-aware workspace.",
+      "QueryOps AI brings scoped exploration, reusable views, and controlled actions into one role-aware workspace.",
     proofs: ["Role-aware", "Scoped access", "Synthetic demo data"],
   },
   {
@@ -138,7 +138,7 @@ function ProductTopbar() {
         <span aria-hidden="true" className={styles.productMark}>
           <LuDatabaseZap />
         </span>
-        <strong>QueryOps</strong>
+        <strong>QueryOps AI</strong>
         <span className={styles.demoLabel}>Demo workspace</span>
       </div>
       <div className={styles.viewerContext} aria-label="Preview viewer context">
@@ -588,10 +588,10 @@ export function QueryOpsProductPreview() {
 
   return (
     <div className={styles.previewLayout}>
-      <section className={styles.productFrame} aria-label="Interactive QueryOps product preview">
+      <section className={styles.productFrame} aria-label="Interactive QueryOps AI product preview">
         <ProductTopbar />
         <div className={styles.productBody}>
-          <nav className={styles.productNav} aria-label="QueryOps preview navigation">
+          <nav className={styles.productNav} aria-label="QueryOps AI preview navigation">
             <div role="tablist" aria-orientation="vertical" className={styles.navList}>
               {productViews.map((view, index) => {
                 const Icon = view.icon;

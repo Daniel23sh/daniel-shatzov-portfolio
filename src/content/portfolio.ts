@@ -262,7 +262,7 @@ export const projects = [
   {
     id: "queryops",
     number: "01",
-    title: "QueryOps",
+    title: "QueryOps AI",
     subtitle: "IT Operations · Data Governance",
     role: "Founder, Product Lead & Full-Stack Developer",
     duration: "May 2026 – Present",
@@ -308,10 +308,10 @@ export const projects = [
           body: "Operational teams need answers from structured data, but direct database access can be unsafe, too technical, or too broad. A simple natural-language query interface is not enough when results must respect scope, permissions, and operational controls.",
         },
         build: {
-          body: "QueryOps brings the governed workflow into one clear path: ask a scoped question, review a safe result, save a useful view, and route sensitive follow-up actions through approval and audit. The experience keeps controls visible without letting them overpower the task.",
+          body: "QueryOps AI brings the governed workflow into one clear path: ask a scoped question, review a safe result, save a useful view, and route sensitive follow-up actions through approval and audit. The experience keeps controls visible without letting them overpower the task.",
         },
         outcome: {
-          body: "QueryOps demonstrates an end-to-end governed data workflow: investigate a scoped operational question, review a safe result, then request and track a controlled action with approval and auditability.",
+          body: "QueryOps AI demonstrates an end-to-end governed data workflow: investigate a scoped operational question, review a safe result, then request and track a controlled action with approval and auditability.",
           qualifier:
             "Locally runnable demo using deterministic synthetic IT Operations data and a mock LLM provider — not a production deployment.",
         },
@@ -375,7 +375,7 @@ export const projects = [
     number: "02",
     title: "CheckIT",
     subtitle: "Early-Stage EdTech Product",
-    role: "Full-Stack Developer",
+    role: "Lead Full-Stack Developer",
     duration: "January 2026 – Present",
     status: "Active Development",
     visibility: "Private",
@@ -403,7 +403,7 @@ export const projects = [
     },
     poster: checkItProductPoster,
     caseStudy: {
-      projectLabel: "Product Leadership",
+      projectLabel: "Product & Technical Leadership",
       category: "EdTech · Adaptive Practice",
       facts: [
         "Lead Full-Stack Developer",
